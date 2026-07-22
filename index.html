@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎂 [속보] 남미소 생일 축하 킹받는 콘솔 :: 미소의 세상 Special</title>
+  
+  <!-- CDN Scripts for Celebration Effects -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.4/dist/confetti.browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fireworks-js@2.10.8/dist/index.umd.js"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Gamja+Flower&family=Jua&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+
+  <!-- Dynamic Background Particles & Lights -->
+  <div id="bg-stage">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="glow-orb orb-3"></div>
+  </div>
+
+  <!-- Audio Players (Hidden) -->
+  <audio id="audioBbung" src="./assets/bbung.mp3" preload="auto"></audio>
+  <audio id="audioBye" src="./assets/annyeonghigyeseyo.mp3" preload="auto"></audio>
+
+  <div class="app-shell">
+    
+    <!-- 🔝 Sidebar / Brand Navigation -->
+    <aside class="sidebar">
+      <div class="brand-block">
+        <div class="brand-avatar">
+          <img src="./assets/미소.jpeg" alt="남미소" class="avatar-img" />
+          <span class="online-dot"></span>
+        </div>
+        <div>
+          <p class="eyebrow">MISO WORLD OPS v2026</p>
+          <h1>미소의 세상</h1>
+          <p class="subtitle-badge">남미소 생일 특설 본부</p>
+        </div>
+      </div>
+
+      <div class="status-box">
+        <div class="status-row">
+          <span>TARGET:</span>
+          <strong>남미소 (NAM MISO)</strong>
+        </div>
+        <div class="status-row">
+          <span>EVENT:</span>
+          <strong class="highlight-pink">HAPPY BIRTHDAY 🎉</strong>
+        </div>
+        <div class="status-row">
+          <span>MOOD:</span>
+          <strong class="highlight-gold" id="moodText">시크함 99% / 킹받음 대기중</strong>
+        </div>
+      </div>
+
+      <nav class="nav-stack">
+        <a class="nav-item active" href="#chase-section">
+          <span class="icon">🏃</span> 케이크 도망 게임
+        </a>
+        <a class="nav-item" href="#captcha-section">
+          <span class="icon">🛡️</span> 킹받는 캡차 검증
+        </a>
+        <a class="nav-item" href="#slot-section">
+          <span class="icon">🎰</span> 킹받는 칭찬 뽑기
+        </a>
+        <a class="nav-item" href="#certificate-section">
+          <span class="icon">📜</span> 생일 혜택 선언문
+        </a>
+        <a class="nav-item" href="#gallery-section">
+          <span class="icon">🖼️</span> 미소 갤러리
+        </a>
+      </nav>
+
+      <!-- Sound Control Box -->
+      <div class="sound-panel">
+        <p class="sound-title">🔊 킹받는 효과음 바</p>
+        <div class="sound-btn-grid">
+          <button type="button" class="snd-btn" id="btnSndBbung">💨 뿡!</button>
+          <button type="button" class="snd-btn" id="btnSndBye">👋 안녕히계세요</button>
+          <button type="button" class="snd-btn" id="btnSndFanfare">🎺 팡파르!</button>
+          <button type="button" class="snd-btn" id="btnSndRetro">🎵 레트로 멜로디</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- 🎮 Main Console Area -->
+    <main class="main-content">
+      
+      <header class="topbar">
+        <div class="topbar-title">
+          <p class="eyebrow">BIRTHDAY SPECIAL CONSOLE :: 2026.07.22</p>
+          <h2>🎉 [속보] 남미소 님의 생일을 열렬히 축하합니다! 🎉</h2>
+        </div>
+        <div class="topbar-actions">
+          <button type="button" class="btn-hero-action" id="btnFullFinale">
+            💥 축하 대폭발 피날레 쏘기!
+          </button>
+        </div>
+      </header>
+
+      <!-- HERO BANNER -->
+      <section class="hero-card">
+        <div class="hero-img-wrap">
+          <img src="./assets/미소의세상.jpeg" alt="미소의 세상 공식 이미지" class="hero-img" />
+          <div class="hero-badge">HAPPY BIRTHDAY!</div>
+        </div>
+        <div class="hero-info">
+          <span class="tag-pill">원작 《미소의 세상》 X 남미소 컬래버</span>
+          <h3>“오늘 미소의 세상 주인공은 **남미소** 님입니다.”</h3>
+          <p class="hero-desc">
+            표정은 시크하지만 속정 깊고 능률 200%인 남미소 님의 생일을 맞아,
+            실제 《미소의 세상》 애니메이션 이미지로 완성한 전용 생일 콘솔을 가동합니다!
+          </p>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-num">∞</span>
+              <span class="stat-label">오늘 받을 축하</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">0개</span>
+              <span class="stat-label">오늘 허용된 야근</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">100%</span>
+              <span class="stat-label">칼퇴 권한</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 🏃 GAME 1: RUNAWAY CAKE CHASE -->
+      <section class="section-card" id="chase-section">
+        <div class="card-header">
+          <div>
+            <p class="eyebrow">MINI GAME 01</p>
+            <h3>🎂 [선물 추격전] 케이크 촛불 끄기 챌린지!</h3>
+          </div>
+          <div class="gauge-box">
+            <span class="gauge-label">킹받음 수치: <strong id="chaseCount">0</strong> / 10</span>
+            <div class="gauge-bar">
+              <div class="gauge-fill" id="chaseGauge"></div>
+            </div>
+          </div>
+        </div>
+        
+        <p class="section-subtext">
+          마우스/손가락을 가져다 대서 케이크 촛불을 꺼보세요! (도망치면 킹받음 수치가 상승합니다 😈)
+        </p>
+
+        <div class="chase-arena" id="chaseArena">
+          <div id="runawayTarget" class="runaway-target">
+            <div class="cake-emoji">🎂</div>
+            <div class="target-label">남미소 케이크 (터치 금지)</div>
+          </div>
+          <div id="tauntBubble" class="taunt-bubble">응 안 줘~ 🤪</div>
+        </div>
+      </section>
+
+      <!-- 🛡️ GAME 2: KING-BAT CAPTCHA -->
+      <section class="section-card" id="captcha-section">
+        <div class="card-header">
+          <div>
+            <p class="eyebrow">MINI GAME 02</p>
+            <h3>🛡️ 남미소 생일 자격 검증 CAPTCHA</h3>
+          </div>
+          <span class="badge-pill">보안 수준: 킹받음</span>
+        </div>
+
+        <div class="captcha-box">
+          <p class="captcha-question" id="captchaQuestion">
+            Q. 다음 중 오늘 세상에서 가장 행복하고 칼퇴근을 해야 하는 사람은?
+          </p>
+          <div class="captcha-options" id="captchaOptions">
+            <button type="button" class="btn-captcha-opt" data-correct="false">1. 사료 먹고 졸고 있는 야옹이 🐱</button>
+            <button type="button" class="btn-captcha-opt" data-correct="true">2. 오늘 생일의 주인공 남미소! 👑</button>
+            <button type="button" class="btn-captcha-opt" data-correct="false">3. 미소의 세상 동네 고양이 친구들 🐈</button>
+            <button type="button" class="btn-captcha-opt" data-correct="false">4. 야근 대기 중인 다른 누군가 💻</button>
+          </div>
+          <div class="captcha-result" id="captchaResult"></div>
+        </div>
+      </section>
+
+      <!-- 🎰 FEATURE 3: COMPLIMENT SLOT MACHINE -->
+      <section class="section-card" id="slot-section">
+        <div class="card-header">
+          <div>
+            <p class="eyebrow">FEATURE 03</p>
+            <h3>🎰 킹받는 남미소 생일 칭찬 슬롯 머신</h3>
+          </div>
+        </div>
+        <p class="section-subtext">버튼을 눌러 남미소 님을 위한 엉뚱하고 거창한 칭찬 조합을 뽑아보세요!</p>
+
+        <div class="slot-machine">
+          <div class="slot-reels">
+            <div class="reel" id="reel1">전설의</div>
+            <div class="reel" id="reel2">칼퇴 마스터</div>
+            <div class="reel" id="reel3">남미소 짱!</div>
+          </div>
+          <button type="button" class="btn-slot-spin" id="btnSpin">🎰 칭찬 슬롯 돌리기!</button>
+        </div>
+      </section>
+
+      <!-- 📜 FEATURE 4: OFFICIAL CERTIFICATE -->
+      <section class="section-card" id="certificate-section">
+        <div class="card-header">
+          <div>
+            <p class="eyebrow">FEATURE 04</p>
+            <h3>📜 남미소 생일 혜택 법적 보장 선언문</h3>
+          </div>
+          <span class="badge-pill gold">법적 효력 없음(마음만은 100%)</span>
+        </div>
+
+        <div class="cert-paper">
+          <div class="cert-watermark">MISO</div>
+          <h4>생일 혜택 특별 승인서</h4>
+          <p class="cert-text">
+            본 문서의 소지자 <strong>[ 남미소 ]</strong> 님은 2026년 7월 22일 생일을 맞아<br>
+            아래와 같은 초법적 혜택을 당당히 요구하고 실행할 권리를 가집니다.
+          </p>
+          <ul class="cert-list">
+            <li>✅ <strong>칼퇴근 절대 보장권:</strong> 18시 정각 이후 업무 연락 시 자동 차단.</li>
+            <li>✅ <strong>디저트 및 케이크 독점권:</strong> 제일 큰 케이크 조각 남미소 우선 배정.</li>
+            <li>✅ <strong>킹받음 무허가 면책권:</strong> 오늘 하루 무슨 드립을 쳐도 웃어넘겨줌.</li>
+          </ul>
+          <div class="cert-stamp-area">
+            <button type="button" class="btn-stamp" id="btnStamp">💮 킹받는 승인 도장 찍기!</button>
+            <div class="stamp-mark" id="stampMark">APPROVED<br>남미소 짱</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 🖼️ FEATURE 5: REAL MISO MEME GALLERY -->
+      <section class="section-card" id="gallery-section">
+        <div class="card-header">
+          <div>
+            <p class="eyebrow">FEATURE 05</p>
+            <h3>🖼️ 진짜 《미소의 세상》 X 병맛 짤 갤러리</h3>
+          </div>
+        </div>
+
+        <div class="gallery-grid">
+          <div class="gallery-card">
+            <img src="./assets/미소.jpeg" alt="남미소 단독" />
+            <div class="gallery-caption">
+              <strong>“시크함의 대명사 남미소”</strong>
+              <p>표정은 무표정하지만 속정 깊은 미소</p>
+            </div>
+          </div>
+          <div class="gallery-card">
+            <img src="./assets/미소의세상.jpeg" alt="미소의 세상 타이틀" />
+            <div class="gallery-caption">
+              <strong>“미소의 세상 메인 타이틀”</strong>
+              <p>오늘의 주인공 남미소 세상 가동!</p>
+            </div>
+          </div>
+          <div class="gallery-card">
+            <img src="./assets/maxresdefault.jpg" alt="미소 하이라이트" />
+            <div class="gallery-caption">
+              <strong>“남미소 생일 스페셜 컷”</strong>
+              <p>시선강탈 최고 명장면</p>
+            </div>
+          </div>
+          <div class="gallery-card">
+            <img src="./assets/sddefault.jpg" alt="미소 스냅" />
+            <div class="gallery-caption">
+              <strong>“도도함 100% 무표정 샷”</strong>
+              <p>킹받지만 미워할 수 없는 매력</p>
+            </div>
+          </div>
+          <div class="gallery-card">
+            <img src="./assets/images.jpeg" alt="미소 컷 1" />
+            <div class="gallery-caption">
+              <strong>“4세 만능 유치원생 미소”</strong>
+              <p>못하는 게 없는 완벽주의자</p>
+            </div>
+          </div>
+          <div class="gallery-card">
+            <img src="./assets/images (1).jpeg" alt="미소 컷 2" />
+            <div class="gallery-caption">
+              <strong>“미소의 귀여운 스틸컷”</strong>
+              <p>생일 축하 하트 뿅뿅</p>
+            </div>
+          </div>
+          <div class="gallery-card">
+            <img src="./assets/cat1.png" alt="Silly Cat 1" />
+            <div class="gallery-caption">
+              <strong>“야옹이 패거리 1호”</strong>
+              <p>생일 축하 댄스 대기 중</p>
+            </div>
+          </div>
+          <div class="gallery-card">
+            <img src="./assets/cat2.png" alt="Silly Cat 2" />
+            <div class="gallery-caption">
+              <strong>“야옹이 패거리 2호”</strong>
+              <p>케이크 기다리는 고양이</p>
+            </div>
+          </div>
+          <div class="gallery-card">
+            <img src="./assets/cat3.png" alt="Silly Cat 3" />
+            <div class="gallery-caption">
+              <strong>“야옹이 패거리 3호”</strong>
+              <p>신난 고양이</p>
+            </div>
+          </div>
+          <div class="gallery-card">
+            <img src="./assets/cat4.png" alt="Silly Cat 4" />
+            <div class="gallery-caption">
+              <strong>“야옹이 패거리 4호”</strong>
+              <p>남미소 칼퇴축하!</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer-note">
+        <p>🎉 Made with ❤️ & 킹받음 for <strong>남미소 님</strong> | 미소의 세상 Special Edition</p>
+      </footer>
+
+    </main>
+
+  </div>
+
+  <!-- 🎆 FINALE OVERLAY -->
+  <div id="finaleOverlay" class="finale-overlay">
+    <div id="fireworksContainer" class="fw-container"></div>
+    <div class="finale-card">
+      <div class="fin-icon">🎂🎉👑</div>
+      <p class="fin-eyebrow">SUPER BIRTHDAY OVERDRIVE</p>
+      <h2 class="fin-title">🎉 남미소 님 생일 축하합니다! 🎉</h2>
+      <p class="fin-desc">
+        오늘 하루 세상에서 가장 즐겁고 행복한 일만 가득하시길 바랍니다!<br>
+        모든 킹받음과 스트레스는 날려버리고, 맛있는 거 많이 드세요! ✨
+      </p>
+      <div class="fin-btn-row">
+        <button type="button" class="btn-fin-close" id="btnCloseFinale">축하 고마워! (닫기)</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
