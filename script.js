@@ -1,27 +1,7 @@
 /* ── MISO'S WORLD BIRTHDAY CONSOLE SCRIPT ── */
 document.addEventListener('DOMContentLoaded', () => {
-  
-  // ── 1. Audio Elements & Sound Synthesizer ──
-  const audioBbung = document.getElementById('audioBbung');
-  const audioBye = document.getElementById('audioBye');
 
-  const btnSndBbung = document.getElementById('btnSndBbung');
-  const btnSndBye = document.getElementById('btnSndBye');
-  const btnSndFanfare = document.getElementById('btnSndFanfare');
-  const btnSndRetro = document.getElementById('btnSndRetro');
-
-  // Play audio safely
-  function playAudio(audioEl) {
-    if (audioEl) {
-      audioEl.currentTime = 0;
-      audioEl.play().catch(e => console.log('Audio play blocked:', e));
-    }
-  }
-
-  btnSndBbung?.addEventListener('click', () => playAudio(audioBbung));
-  btnSndBye?.addEventListener('click', () => playAudio(audioBye));
-
-  // Web Audio Synth Fanfare
+  // ── 1. Web Audio Synthesizer Sound Effects ──
   function playSynthFanfare() {
     try {
       const ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -38,13 +18,27 @@ document.addEventListener('DOMContentLoaded', () => {
         osc.start(ctx.currentTime + i * 0.12);
         osc.stop(ctx.currentTime + i * 0.12 + 0.45);
       });
-    } catch(e) {
-      console.log('Web Audio error:', e);
-    }
+    } catch(e) {}
   }
 
-  // Web Audio Retro Tune
-  function playRetroTune() {
+  function playRetroDodgeTune() {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'square';
+      osc.frequency.setValueAtTime(440, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.15);
+      gain.gain.setValueAtTime(0.1, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.15);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(ctx.currentTime);
+      osc.stop(ctx.currentTime + 0.15);
+    } catch(e) {}
+  }
+
+  function playSlotSpinSound() {
     try {
       const ctx = new (window.AudioContext || window.webkitAudioContext)();
       const notes = [440, 554.37, 659.25, 880, 659.25, 880];
@@ -52,19 +46,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
         osc.type = 'square';
-        osc.frequency.setValueAtTime(freq, ctx.currentTime + i * 0.1);
-        gain.gain.setValueAtTime(0.15, ctx.currentTime + i * 0.1);
-        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + i * 0.1 + 0.2);
+        osc.frequency.setValueAtTime(freq, ctx.currentTime + i * 0.08);
+        gain.gain.setValueAtTime(0.12, ctx.currentTime + i * 0.08);
+        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + i * 0.08 + 0.18);
         osc.connect(gain);
         gain.connect(ctx.destination);
-        osc.start(ctx.currentTime + i * 0.1);
-        osc.stop(ctx.currentTime + i * 0.1 + 0.22);
+        osc.start(ctx.currentTime + i * 0.08);
+        osc.stop(ctx.currentTime + i * 0.08 + 0.2);
       });
     } catch(e) {}
   }
-
-  btnSndFanfare?.addEventListener('click', playSynthFanfare);
-  btnSndRetro?.addEventListener('click', playRetroTune);
 
 
   // ── 2. Runaway Cake Game (선물 추격전) ──
@@ -105,6 +96,9 @@ document.addEventListener('DOMContentLoaded', () => {
     runawayTarget.style.top = `${newY}px`;
     runawayTarget.style.transform = 'none';
 
+    // Play retro dodge sound effect on action
+    playRetroDodgeTune();
+
     // Show Taunt Bubble
     const randomTaunt = tauntList[Math.floor(Math.random() * tauntList.length)];
     if (tauntBubble) {
@@ -123,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (chaseCount === 10) {
         if (moodTextEl) moodTextEl.textContent = "🔥 남미소 폭주 모드 해금!!";
-        playAudio(audioBbung);
+        playSynthFanfare();
         triggerConfettiBurst();
       }
     }
@@ -160,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
           captchaResult.style.color = '#ef4444';
           captchaResult.textContent = '❌ 땡! 킹받게 만드는데 성공했습니다. 다시 선택해보세요!';
         }
-        playAudio(audioBbung);
+        playRetroDodgeTune();
       }
     });
   });
@@ -177,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const list3 = ["남미소 님 생일 축하!", "케이크 3조각 독식!", "전 사원 칭찬 수감!", "오늘 하루 주인공!"];
 
   btnSpin?.addEventListener('click', () => {
-    playRetroTune();
+    playSlotSpinSound();
     let counter = 0;
     const interval = setInterval(() => {
       if (reel1) reel1.textContent = list1[Math.floor(Math.random() * list1.length)];
@@ -201,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (stampMark) {
       stampMark.classList.add('stamped');
     }
-    playAudio(audioBbung);
+    playSynthFanfare();
     triggerConfettiBurst();
   });
 
